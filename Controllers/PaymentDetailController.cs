@@ -16,14 +16,6 @@ namespace PaymentAPI.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PaymentDetailController : ControllerBase
     {
-        [Route("Biodata")]
-        [HttpGet]
-        [Produces("text/html")]
-        public ActionResult<string> Biodata()
-        {
-            string _result = "Kevin Hadinata";
-            return _result;
-        }
         private readonly ApiDbContext _context;
 
         public PaymentDetailController(ApiDbContext context)
