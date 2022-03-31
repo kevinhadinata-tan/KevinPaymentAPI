@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.FileProviders; 
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,7 @@ using Microsoft.OpenApi.Models;
 
 using PaymentAPI.Data;
 using PaymentAPI.Configuration;
+using System.IO;
 
 namespace PaymentAPI
 {
@@ -128,6 +130,15 @@ namespace PaymentAPI
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentAPI v1"));
+
+            app.UseFileServer(new FileServerOptions  
+                {  
+                    FileProvider = new PhysicalFileProvider(  
+                        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),  
+                        RequestPath = "/StaticFiles",  
+                        EnableDefaultFiles = true  
+                }
+            ) ;
 
             app.UseHttpsRedirection();
 
