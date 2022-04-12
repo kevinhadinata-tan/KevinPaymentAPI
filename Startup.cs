@@ -44,7 +44,7 @@ namespace PaymentAPI
 
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
-            services.AddCors();
+            // services.AddCors();
 
             services.AddDbContext<ApiDbContext>(options =>
                 options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)
@@ -142,10 +142,10 @@ namespace PaymentAPI
                 }
             ) ;
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            // app.UseCors(x => x
+            //     .AllowAnyOrigin()
+            //     .AllowAnyMethod()
+            //     .AllowAnyHeader());
 
             // app.UseHttpsRedirection();
 
